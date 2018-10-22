@@ -27,7 +27,7 @@ import { MenuComponent } from './menu/menu.component';
     MatToolbarModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
