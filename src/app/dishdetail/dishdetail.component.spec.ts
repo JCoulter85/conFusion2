@@ -8,9 +8,9 @@ describe('DishdetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DishdetailComponent]
+      declarations: [ DishdetailComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,4 +23,3 @@ describe('DishdetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
+import { DishdetailComponent } from './dishdetail/dishdetail.component';
 
 
 
@@ -19,9 +20,11 @@ import { MenuComponent } from './menu/menu.component';
   declarations: [
     AppComponent,
     MenuComponent,
+    DishdetailComponent,
     
   ],
   imports: [
+    DishdetailComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
