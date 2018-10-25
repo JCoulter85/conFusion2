@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-dishdetail',
+  selector: 'app-DishDetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss']
 })
-export class DishdetailComponent implements OnInit {
+export class DishDetailComponent implements OnInit {
 
   constructor() { }
 
