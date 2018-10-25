@@ -24,7 +24,6 @@ import { DishDetailComponent } from './dishdetail/dishdetail.component';
     
   ],
   imports: [
-    DishDetailComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
