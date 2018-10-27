@@ -19,14 +19,21 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
-  <div fxFlex>
+<h2>Comments</h2>
+  <div fxFlex="40">
     <mat-list>
-      <mat-list-item *ngFor="let comments of dish.comment">
-        <p>{{comment.comment}}</p>
-        <p>{{comment.rating}}</p>
-        <p>{{comment.author}}{{comment.date | date}}</p>
+      <h2>Comments</h2>
+      <mat-list-header>Comments</mat-list-header>
+      <mat-list-item *ngFor="let comment of dish.comment">
+        <mat-list-content>
+          <p>{{comment.comment}}</p>
+          <p>{{comment.rating}}</p>
+          <p>{{comment.author}}{{comment.date | date}}</p>
+        </mat-list-content>
       </mat-list-item>
     </mat-list>
   </div>
+
+  
+
 </div>
