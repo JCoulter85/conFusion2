@@ -21,18 +21,12 @@
   </div>
 
   <div fxFlex>
-    <mat-grid-list cols="1">
+    <mat-list>
       <mat-grid-tile *ngFor="let comment of dish.comment">
-       <h3> {{comment.comment}} </h3>
-       <h3>  {{comment.author}}  </h3>
-       <h3> {{comment.date | date}} </h3>
+        <p> {{ comment.comment }} </p>
+        <p> {{ comment.rating }} </p>
+        <p> {{ comment.author }} {{ comment.date | date }} </p>
       </mat-grid-tile>
-    </mat-grid-list>
+      </mat--list>
   </div>
-  
-  <div fxFlex *ngIf="selecteddish">
-    <app-dishdetail></app-dishdetail>
-  </div>
-
-
-  </div>
+</div>
