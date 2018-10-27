@@ -19,9 +19,9 @@
       </mat-card-actions>
     </mat-card>
   </div>
- 
+
   <div fxFlex="40">
-    <mat-grid-list cols="1" rowHeight="3:1">
+    <mat-grid-list cols="1" rowHeight="4:1">
       <mat-grid-tile>1</mat-grid-tile>
       <mat-grid-tile>2</mat-grid-tile>
       <mat-grid-tile>3</mat-grid-tile>
@@ -29,6 +29,8 @@
     </mat-grid-list>
   </div>
   <div fxFlex *ngIf="selectedDish">
-      <app-dishdetail></app-dishdetail>
-    </div>
+    <app-dishdetail></app-dishdetail>
+  </div>
+
+
   </div>

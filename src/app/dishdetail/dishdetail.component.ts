@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 
-
 const DISH = {
   id: '0',
   name: 'Uthappizza',
