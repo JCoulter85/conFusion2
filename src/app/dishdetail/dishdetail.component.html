@@ -22,11 +22,11 @@
 
   <div fxFlex>
     <mat-list>
-      <mat-grid-item *ngFor="let comment of dish.comment">
-        <p> {{comment.comment}} </p>
-        <p> {{comment.rating}} </p>
-        <p> {{comment.author}} {{comment.date | date}} </p>
-      </mat-grid-item>
-      </mat-list>
+      <mat-list-item *ngFor="let comments of dish.comment">
+        <p>{{comment.comment}}</p>
+        <p>{{comment.rating}}</p>
+        <p>{{comment.author}}{{comment.date | date}}</p>
+      </mat-list-item>
+    </mat-list>
   </div>
 </div>
