@@ -20,15 +20,17 @@
     </mat-card>
   </div>
 
-  <div fxFlex="40">
-    <mat-grid-list cols="1" rowHeight="4:1">
-      <mat-grid-tile>1</mat-grid-tile>
-      <mat-grid-tile>2</mat-grid-tile>
-      <mat-grid-tile>3</mat-grid-tile>
-      <mat-grid-tile>4</mat-grid-tile>
+  <div fxFlex>
+    <mat-grid-list cols="1">
+      <mat-grid-tile *ngFor="let comment of dish.comment">
+       <h3> {{comment.comment}} </h3>
+       <h3>  {{comment.author}}  </h3>
+       <h3> {{comment.date | date}} </h3>
+      </mat-grid-tile>
     </mat-grid-list>
   </div>
-  <div fxFlex *ngIf="selectedDish">
+  
+  <div fxFlex *ngIf="selecteddish">
     <app-dishdetail></app-dishdetail>
   </div>
 

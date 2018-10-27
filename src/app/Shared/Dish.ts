@@ -1,4 +1,4 @@
-export class Dish {
+export class dish {
     id: string;
     name: string;
     image: string;
