@@ -12,8 +12,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishDetailComponent } from './dishdetail/dishdetail.component';
-
-
 import { DishService } from './services/dish.service';
 
 
