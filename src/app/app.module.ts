@@ -13,6 +13,8 @@ import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
 import { DishDetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { DishService } from './services/dish.service';
     AppComponent,
     MenuComponent,
     DishDetailComponent,
+    HeaderComponent,
+    FooterComponent,
     
   ],
   imports: [
