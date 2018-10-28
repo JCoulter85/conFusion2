@@ -20,7 +20,6 @@ import { DishDetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +30,7 @@ import { DishService } from './services/dish.service';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    AppRoutingModule,
+    
 
   ],
   imports: [
