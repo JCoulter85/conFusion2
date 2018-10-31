@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { dish } from '../shared/dish';
+import { Dish } from '../shared/dish';
 
 @Component({
   selector: 'app-dishdetail',
@@ -8,8 +8,8 @@ import { dish } from '../shared/dish';
 })
 export class DishDetailComponent implements OnInit {
 
-    @Input()
-  dish: dish;
+  @Input()
+  dish: Dish;
 
   constructor() { }
 
