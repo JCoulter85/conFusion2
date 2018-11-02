@@ -20,7 +20,8 @@ import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { Dish } from './shared/dish';
+import { LeaderService } from './services/leader.service';
+
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { Dish } from './shared/dish';
     AboutComponent,
     HomeComponent,
     ContactComponent,
+    LeaderService,
   ],
   imports: [
     BrowserModule,
@@ -44,11 +46,14 @@ import { Dish } from './shared/dish';
     MatCardModule,
     MatButtonModule,
     MatListModule,
+    LeaderService,
+    
   ],
 
   providers: [
     DishService,
     PromotionService,
+    LeaderService,
   ],
   bootstrap: [AppComponent]
 })
