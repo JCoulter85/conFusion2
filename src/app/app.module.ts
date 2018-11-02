@@ -34,7 +34,7 @@ import { LeaderService } from './services/leader.service';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LeaderService,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,7 @@ import { LeaderService } from './services/leader.service';
     MatCardModule,
     MatButtonModule,
     MatListModule,
-    LeaderService,
+    
     
   ],
 
