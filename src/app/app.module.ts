@@ -45,7 +45,7 @@ import { LeaderService } from './services/leader.service';
     MatCardModule,
     MatButtonModule,
     MatListModule,
-
+    
   ],
 
   providers: [
