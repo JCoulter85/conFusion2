@@ -61,15 +61,15 @@
   </div>
 
 
-  <mat-card *ngIf="leader" fxFlex>
-    <mat-card-content>
-      <p matLine>{{leader.name}}</p>
-      
-      <p matLine>{{leader.designation}}</p>
-      <p matLine>{{leader.abbr}}</p>
-      <p matLine>{{leader.description}}</p>
-      
-    </mat-card-content>
-  </mat-card>
+  <mat-list *ngIf="leader" fxFlex>
+    <mat-list>
+      <mat-list-item>
+        <p matLine>{{leader.name}}</p>
+        <p matLine>{{leader.designation}}</p>
+        <p matLine>{{leader.abbr}}</p>
+        <p matLine>{{leader.description}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-list>
 
 </div>
