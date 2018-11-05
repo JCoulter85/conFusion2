@@ -60,10 +60,12 @@
 
 
   <mat-list *ngIf="leaders" fxFlex>
-    <mat-list header><h2>Corporate Leadership</h2></mat-list>
+    <mat-list header>
+      <h2>Corporate Leadership</h2>
+    </mat-list>
     <mat-list>
       <mat-list-item *ngFor="let leader of leaders">
-        <p matLine>{{leader.image}}</p>
+        <img mat-icon src={{leader.image}}>
         <p matLine>{{leader.name}}</p>
         <p matLine>{{leader.designation}}</p>
         <p matLine>{{leader.abbr}}</p>
