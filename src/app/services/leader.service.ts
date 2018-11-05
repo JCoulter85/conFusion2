@@ -11,6 +11,5 @@ export class LeaderService {
 
   getLeaders(): Leader[] {
     return LEADERS;
-       
   }
 }
