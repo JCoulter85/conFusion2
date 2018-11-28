@@ -38,7 +38,7 @@ export class ContactComponent implements OnInit {
     },
     'telnum': {
       'required': 'Tel. number is required.',
-      'pattern': 'Tel. number must contain only numbers.'
+      'pattern': 'Tel. number must contain only numbers.',
     },
     'email': {
       'required': 'email is required.',
