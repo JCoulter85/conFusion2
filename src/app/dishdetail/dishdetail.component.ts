@@ -29,6 +29,7 @@ export class DishdetailComponent implements OnInit {
   contactType = ContactType;
   name = new FormControl('');
   comment = new FormControl('');
+  rating = MatSliderModule;
   @ViewChild('fform') feedbackFormDirective;
 
 
