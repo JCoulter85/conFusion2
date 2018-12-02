@@ -7,6 +7,8 @@ import { switchMap } from 'rxjs/operators';
 import { Feedback, ContactType } from '../shared/feedback';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -14,6 +16,7 @@ import { ViewChild } from '@angular/core';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss']
+  
 })
 export class DishdetailComponent implements OnInit {
 
@@ -24,13 +27,14 @@ export class DishdetailComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  name = new FormControl('');
+  comment = new FormControl('');
   @ViewChild('fform') feedbackFormDirective;
+
+
 
   formErrors = {
     'firstname': '',
-    'lastname': '',
-    'telnum': '',
-    'email': ''
   };
 
 
