@@ -24,12 +24,12 @@ export class DishdetailComponent implements OnInit {
   dishIds: string[];
   prev: string;
   next: string;
-  feedbackForm: FormGroup;
-  feedback: Feedback;
-  contactType = ContactType;
-  name = new FormControl('');
-  comment = new FormControl('');
-  rating = MatSliderModule;
+
+  feedbackForm= new FormGroup({
+  firstName: new FormControl(''),
+  comment: new FormControl(''),
+});
+
   @ViewChild('fform') feedbackFormDirective;
 
 
