@@ -171,3 +171,8 @@ export const DISHES: Dish[] = [
         ]
     }
 ];
+
+export class Feedback {
+    firstName: string;
+    comment: string;
+};
