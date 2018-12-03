@@ -77,14 +77,7 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-    });
-    this.feedbackFormDirective.resetForm();
-  }
+  
 
   
 
