@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormControl } from '@angular/forms';
-
+import { Feedback, ContactType } from '../shared/feedback';
 
 
 @Component({
@@ -28,13 +28,15 @@ export class DishdetailComponent implements OnInit {
   firstName: new FormControl(''),
   comment: new FormControl(''),
 });
-
+feedback: Feedback;
+contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
 
 
 
   formErrors = {
     'firstname': '',
+    'comment': '',
   };
 
 
@@ -44,11 +46,17 @@ export class DishdetailComponent implements OnInit {
       'minlength': 'First name must be at least 2 characters long.',
       'maxlength': 'First name cannot be more than 25 characters long.',
     },
+    'comment': {
+      'required': 'A comment is required.',
+      'minlength': 'The comment section must contain a few words.',
+      'maxlength': 'We did not ask for a Doctorate Hypothesis. Please shorten your comment TY.',
+    }
   }
 
   createForm() {
     this.feedbackForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      comment: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(120)]],
     });
 
     this.feedbackForm.valueChanges
@@ -77,7 +85,15 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
-  
+  onSubmit() {
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    this.feedbackForm.reset({
+      firstname: '',
+      comment: '',
+    });
+    this.feedbackFormDirective.resetForm();
+  }
 
   
 
