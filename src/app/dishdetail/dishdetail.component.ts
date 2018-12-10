@@ -27,13 +27,14 @@ export class DishdetailComponent implements OnInit {
   feedback: Feedback;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
-  
+  preview: Comment;
+
 
   feedbackForm = new FormGroup({
     firstName: new FormControl(''),
     comment: new FormControl(''),
   });
-  
+
 
 
 
@@ -59,10 +60,10 @@ export class DishdetailComponent implements OnInit {
   constructor(private dishService: DishService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder) { 
-      this.createForm();
-    }
-    
+    private fb: FormBuilder) {
+    this.createForm();
+  }
+
 
   ngOnInit() {
     this.dishService.getDishIds()
@@ -84,24 +85,44 @@ export class DishdetailComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    if (!this.feedbackForm) { return; }
+    if (!this.feedbackForm) { // Do we have a form? No, we have nothing to validate
+     return;
+    }
+
+    // We are going to use the form a lot, lets make referencing it shorter
     const form = this.feedbackForm;
+
+    // Track if form validates successfully
+    let isFormValid = true    
+
+    // Loop through fields
     for (const field in this.formErrors) {
-      if (this.formErrors.hasOwnProperty(field)) {
+        if (!this.formErrors.hasOwnProperty(field)) {
+            continue; // No error for field, next
+        }
+
         // clear previous error message (if any)
         this.formErrors[field] = '';
+
+        // Get reference to field/control
         const control = form.get(field);
+
+        // Is form isn't valid then we need to update error
         if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
-          for (const key in control.errors) {
-            if (control.errors.hasOwnProperty(key)) {
-              this.formErrors[field] += messages[key] + ' ';
+            const messages = this.validationMessages[field];
+
+            // Look through controls errors add to error message
+            for (const key in control.errors) {
+                // We have an error, don't show preview
+                isFormValid = false
+                
+                if (control.errors.hasOwnProperty(key)) {
+                    this.formErrors[field] += messages[key] + ' ';
+                }
             }
-          }
         }
-      }
     }
-  }
+}
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;

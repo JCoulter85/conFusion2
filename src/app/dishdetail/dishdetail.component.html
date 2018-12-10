@@ -36,13 +36,13 @@
         <p matLine>{{comment.comment}}</p>
       </mat-list-item>
       <mat-list-item>
-        <p matLinen><span>{{let previewComment = {....}  // New comment made from form values
-            this.dish.comments.push(previewComment)}}</span></p>
+        <p matLine><span>{{feedbackForm.firstName}}</span></p>
       </mat-list-item>
       <mat-list-item>
         <p matLine>{{feedbackForm.comment}}</p>
       </mat-list-item>
     </mat-list>
+    
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
