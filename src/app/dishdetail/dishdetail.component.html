@@ -36,10 +36,10 @@
         <p matLine>{{comment.comment}}</p>
       </mat-list-item>
       <mat-list-item ngFor="let feedbackForm of dish.commponets">
-        <p matLine>{{ feedbackForm.value | json }}</p>
+        <p matLine>{{firstName}}</p>
       </mat-list-item>
       <mat-list-item>
-        <p matLine>{{feedbackForm.status}}</p>
+        <p matLine>{{feedbackForm.comment}}</p>
       </mat-list-item>
     </mat-list>
   </div>
@@ -47,7 +47,7 @@
 
   <div fxFlex="40" *ngIf="dish">
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" id="firstName">
       <mat-form-field class="full-width">
         <input matInput formControlName="firstName" placeholder="First Name" type="text" required>
         <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
@@ -57,7 +57,7 @@
       </p>
       <p>
         <mat-form-field [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
-          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 required></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 required id="comment"></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>
