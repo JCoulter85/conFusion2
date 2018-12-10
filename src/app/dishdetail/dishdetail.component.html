@@ -36,7 +36,8 @@
         <p matLine>{{comment.comment}}</p>
       </mat-list-item>
       <mat-list-item>
-        <p matLinen><span>{{feedbackForm.firstName}}</span></p>
+        <p matLinen><span>{{let previewComment = {....}  // New comment made from form values
+            this.dish.comments.push(previewComment)}}</span></p>
       </mat-list-item>
       <mat-list-item>
         <p matLine>{{feedbackForm.comment}}</p>
@@ -53,7 +54,7 @@
       </p>
       <p>
         <mat-form-field [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
-          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 id="comment" required></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 id="comment" id="authorComment" required></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>
