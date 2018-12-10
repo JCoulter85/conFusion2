@@ -27,9 +27,7 @@ export class DishdetailComponent implements OnInit {
   feedback: Feedback;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
-  authorname: ('');
-  authorcomment: ('');
-
+  
 
   feedbackForm = new FormGroup({
     firstName: new FormControl(''),
