@@ -41,23 +41,38 @@
       <mat-list-item>
         <p matLine>{{feedbackForm.comment}}</p>
       </mat-list-item>
+
+      <mat-list>
+        <p id="demo"></p>
+      </mat-list>
+
     </mat-list>
-    
+
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
-        <input matInput formControlName="firstName" placeholder="First Name" type="text" ng-model="name" required>
+        <input matInput formControlName="firstName" placeholder="First Name" type="text" id="userName" ng-model="name"
+          required>
         <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
       </mat-form-field>
       <p>
-        <mat-slider min="1" max="5" step="1" value="5" matInput tickInterval="1" thumbLabel tickInterval="1" required></mat-slider>
+        <mat-slider min="1" max="5" step="1" value="5" matInput tickInterval="1" thumbLabel tickInterval="1" id="userRating"
+          (ngSubmit)="onSubmit()" required></mat-slider>
       </p>
       <p>
         <mat-form-field [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
-          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 id="comment" id="authorComment" required></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 id="userComment" required></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>
+
+      <script>
+        function myFunction() {
+          var x = document.getElementById("name").value;
+          document.getElementById("demo").innerHTML = x;
+        }
+      </script>
+
     </form>
     <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
   </div>
