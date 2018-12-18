@@ -1,6 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign.gt-md="space-around center"
   fxLayoutGap="10px" fxLayoutGap.xs="0">
 
+
   <div fxFlex="40" *ngIf="dish">
     <mat-card>
       <mat-card-header>
@@ -44,6 +45,8 @@
 
       <mat-list>
         <p id="demo"></p>
+        <p id="demo2"></p>
+        <p id="demo3"></p>
       </mat-list>
 
     </mat-list>
@@ -66,14 +69,31 @@
         </mat-form-field>
       </p>
     </form>
-    <button onclick="myFunction()" type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid"
+      onclick="nameFunction()">Submit</button>
   </div>
 
-  <script>
-    function myFunction() {
-      var x = document.getElementById("userName").value;
-      document.getElementById("demo").innerHTML = x;
-    }
-  </script>
-  
+
+
 </div>
+
+<script>
+  function nameFunction() {
+    var x = document.getElementById("userName").value;
+    document.getElementById("demo").innerHTML = x;
+  }
+</script>
+
+<script>
+  function nameFunction() {
+    var x = document.getElementById("userRating").value;
+    document.getElementById("demo2").innerHTML = x;
+  }
+</script>
+
+<script>
+  function nameFunction() {
+    var x = document.getElementById("userComment").value;
+    document.getElementById("demo3").innerHTML = x;
+  }
+</script>
