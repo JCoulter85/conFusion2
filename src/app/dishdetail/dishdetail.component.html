@@ -65,15 +65,15 @@
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>
-
-      <script>
-        function myFunction() {
-          var x = document.getElementById("name").value;
-          document.getElementById("demo").innerHTML = x;
-        }
-      </script>
-
     </form>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
+    <button onclick="myFunction()" type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
   </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("userName").value;
+      document.getElementById("demo").innerHTML = x;
+    }
+  </script>
+  
 </div>
