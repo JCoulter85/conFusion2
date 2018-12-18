@@ -32,23 +32,19 @@
     <mat-list>
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of dish.comments">
-        <p matLine><span>--{{comment.author}}{{comment.date | date}}</span></p>
+        <p matLine><span>--{{comment.author}} {{comment.date | date}}</span></p>
         <p matLine>{{comment.rating}} Star</p>
         <p matLine>{{comment.comment}}</p>
       </mat-list-item>
+
+    </mat-list>
+
+    <mat-list>
       <mat-list-item>
-        <p matLine><span>{{feedbackForm.firstName}}</span></p>
-      </mat-list-item>
-      <mat-list-item>
+        <p matLine><span>--{{feedbackForm.firstName}}</span></p>
+        <p matLine>{{feedbackForm.author}} Star</p>
         <p matLine>{{feedbackForm.comment}}</p>
       </mat-list-item>
-
-      <mat-list>
-        <p id="demo"></p>
-        <p id="demo2"></p>
-        <p id="demo3"></p>
-      </mat-list>
-
     </mat-list>
 
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
@@ -69,31 +65,9 @@
         </mat-form-field>
       </p>
     </form>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid"
-      onclick="nameFunction()">Submit</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
   </div>
 
 
 
 </div>
-
-<script>
-  function nameFunction() {
-    var x = document.getElementById("userName").value;
-    document.getElementById("demo").innerHTML = x;
-  }
-</script>
-
-<script>
-  function nameFunction() {
-    var x = document.getElementById("userRating").value;
-    document.getElementById("demo2").innerHTML = x;
-  }
-</script>
-
-<script>
-  function nameFunction() {
-    var x = document.getElementById("userComment").value;
-    document.getElementById("demo3").innerHTML = x;
-  }
-</script>
