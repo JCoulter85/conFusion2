@@ -47,7 +47,6 @@
       </mat-list-item>
     </mat-list>
 
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
         <input matInput formControlName="author" placeholder="author" type="text" ng-model="name"
@@ -60,7 +59,7 @@
       </p>
       <p>
         <mat-form-field [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
-          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 id="userComment" required></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 required></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>

@@ -30,9 +30,10 @@ export class DishdetailComponent implements OnInit {
   preview: Comment;
 
 
-  feedbackForm = new FormGroup({
-    author: new FormControl(''),
-    comment: new FormControl(''),
+  feedbackForm = this.fb.group({
+    author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+    comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
+    rating: ['5'],
   });
 
 
@@ -73,11 +74,7 @@ export class DishdetailComponent implements OnInit {
   }
 
   createForm() {
-    this.feedbackForm = this.fb.group({
-      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-      rating: [],
-    });
+    
 
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
