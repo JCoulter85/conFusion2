@@ -41,7 +41,7 @@
 
     <mat-list>
       <mat-list-item>
-        <p matLine><span>--{{feedbackForm.value.firstName}}</span></p>
+        <p matLine><span>--{{feedbackForm.value.author}}</span></p>
         <p matLine>{{feedbackForm.value.rating}} Star</p>
         <p matLine>{{feedbackForm.value.comment}}</p>
       </mat-list-item>
@@ -50,12 +50,12 @@
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
-        <input matInput formControlName="firstName" placeholder="First Name" type="text" id="userName" ng-model="name"
+        <input matInput formControlName="author" placeholder="author" type="text" ng-model="name"
           required>
-        <mat-error *ngIf="formErrors.firstName">{{ formErrors.firstName }}</mat-error>
+        <mat-error *ngIf="formErrors.author">{{ formErrors.author }}</mat-error>
       </mat-form-field>
       <p>
-        <mat-slider min="1" max="5" step="1" value="5" matInput tickInterval="1" thumbLabel tickInterval="1" id="userRating"
+        <mat-slider matInput formControlName="rating" min="1" max="5" step="1" value="5" matInput tickInterval="1" thumbLabel tickInterval="1" 
           (ngSubmit)="onSubmit()" required></mat-slider>
       </p>
       <p>

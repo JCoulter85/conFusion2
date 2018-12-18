@@ -31,7 +31,7 @@ export class DishdetailComponent implements OnInit {
 
 
   feedbackForm = new FormGroup({
-    firstName: new FormControl(''),
+    author: new FormControl(''),
     comment: new FormControl(''),
   });
 
@@ -39,13 +39,13 @@ export class DishdetailComponent implements OnInit {
 
 
   formErrors = {
-    'firstName': '',
+    'author': '',
     'comment': ''
   };
 
 
   validationMessages = {
-    'firstName': {
+    'author': {
       'required': 'First name is required.',
       'minlength': 'First name must be at least 2 characters long.',
       'maxlength': 'First name cannot be more than 25 characters long.',
@@ -74,7 +74,7 @@ export class DishdetailComponent implements OnInit {
 
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
     });
 
@@ -128,7 +128,7 @@ export class DishdetailComponent implements OnInit {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
     this.feedbackForm.reset({
-      firstName: '',
+      author: '',
       comment: '',
     });
     this.feedbackFormDirective.resetForm();
