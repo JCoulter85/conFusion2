@@ -26,14 +26,14 @@ export class DishdetailComponent implements OnInit {
   next: string;
   feedback: Feedback;
   contactType = ContactType;
-  @ViewChild('fform') feedbackFormDirective;
   preview: Comment;
+  showFeedback: boolean;
 
 
   feedbackForm = this.fb.group({
     author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
     comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-    rating: ['5'],
+    rating: [''],
   });
 
 
@@ -63,6 +63,7 @@ export class DishdetailComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder) {
     this.createForm();
+    this.showFeedback = false;
   }
 
 
@@ -74,7 +75,7 @@ export class DishdetailComponent implements OnInit {
   }
 
   createForm() {
-    
+
 
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
@@ -84,43 +85,43 @@ export class DishdetailComponent implements OnInit {
 
   onValueChanged(data?: any) {
     if (!this.feedbackForm) { // Do we have a form? No, we have nothing to validate
-     return;
+      return;
     }
 
     // We are going to use the form a lot, lets make referencing it shorter
     const form = this.feedbackForm;
 
     // Track if form validates successfully
-    let isFormValid = true    
+    let isFormValid = true
 
     // Loop through fields
     for (const field in this.formErrors) {
-        if (!this.formErrors.hasOwnProperty(field)) {
-            continue; // No error for field, next
+      if (!this.formErrors.hasOwnProperty(field)) {
+        continue; // No error for field, next
+      }
+
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+
+      // Get reference to field/control
+      const control = form.get(field);
+
+      // Is form isn't valid then we need to update error
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+
+        // Look through controls errors add to error message
+        for (const key in control.errors) {
+          // We have an error, don't show preview
+          isFormValid = false
+
+          if (control.errors.hasOwnProperty(key)) {
+            this.formErrors[field] += messages[key] + ' ';
+          }
         }
-
-        // clear previous error message (if any)
-        this.formErrors[field] = '';
-
-        // Get reference to field/control
-        const control = form.get(field);
-
-        // Is form isn't valid then we need to update error
-        if (control && control.dirty && !control.valid) {
-            const messages = this.validationMessages[field];
-
-            // Look through controls errors add to error message
-            for (const key in control.errors) {
-                // We have an error, don't show preview
-                isFormValid = false
-                
-                if (control.errors.hasOwnProperty(key)) {
-                    this.formErrors[field] += messages[key] + ' ';
-                }
-            }
-        }
+      }
     }
-}
+  }
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
@@ -130,7 +131,7 @@ export class DishdetailComponent implements OnInit {
       comment: '',
       rating: '',
     });
-    this.feedbackFormDirective.resetForm();
+
   }
 
   setPrevNext(dishId: string) {

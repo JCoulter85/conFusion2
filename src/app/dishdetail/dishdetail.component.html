@@ -35,7 +35,7 @@
       </mat-list-item>
     </mat-list>
     <mat-list>
-      <mat-list-item>
+      <mat-list-item *ngIf="feedbackForm" >
         <p matLine><span>--{{feedbackForm.value.author}}</span></p>
         <p matLine>{{feedbackForm.value.rating}} Star</p>
         <p matLine>{{feedbackForm.value.comment}}</p>
