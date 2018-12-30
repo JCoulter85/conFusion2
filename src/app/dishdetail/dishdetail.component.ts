@@ -11,6 +11,7 @@ import { FormControl } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 
 
+
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -29,6 +30,8 @@ export class DishdetailComponent implements OnInit {
   preview: Comment;
   showFeedback: boolean;
   newDate = new Date();
+  showComment: string;
+
 
 
   feedbackForm = this.fb.group({
@@ -124,13 +127,32 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feedback = this.feedbackForm.value;
+    let form = this.feedbackForm;
+    var date = new Date()
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    let comment = {
+      comment: form.get("comment").value,
+      rating: form.get("rating").value,
+      author: form.get("author").value,
+      date: day + ' ' + monthNames[monthIndex] + ' ' + year,
+    }
+
+    this.dish.comments.push(comment)
+
     console.log(this.feedback);
     this.feedbackForm.reset({
       author: '',
       comment: '',
       rating: '5',
-      newDate: '',
     });
 
   }
