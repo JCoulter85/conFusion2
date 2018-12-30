@@ -7,6 +7,7 @@ export class Feedback {
     contacttype: string;
     message: string;
     comment: string;
+    newDate = new Date();
 };
 
 export const ContactType = ['None', 'Tel', 'Email'];

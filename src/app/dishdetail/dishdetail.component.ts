@@ -28,6 +28,7 @@ export class DishdetailComponent implements OnInit {
   contactType = ContactType;
   preview: Comment;
   showFeedback: boolean;
+  newDate = new Date();
 
 
   feedbackForm = this.fb.group({
@@ -35,9 +36,6 @@ export class DishdetailComponent implements OnInit {
     comment: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
     rating: ['5'],
   });
-
-
-
 
   formErrors = {
     'author': '',
@@ -92,7 +90,7 @@ export class DishdetailComponent implements OnInit {
     const form = this.feedbackForm;
 
     // Track if form validates successfully
-    
+
 
     // Loop through fields
     for (const field in this.formErrors) {
@@ -105,7 +103,9 @@ export class DishdetailComponent implements OnInit {
 
       // Get reference to field/control
       const control = form.get(field);
-
+      if (control.valid == false) {
+        this.showFeedback = false
+      }
       // Is form isn't valid then we need to update error
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
@@ -130,6 +130,7 @@ export class DishdetailComponent implements OnInit {
       author: '',
       comment: '',
       rating: '5',
+      newDate: '',
     });
 
   }
