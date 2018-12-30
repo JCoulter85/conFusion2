@@ -92,14 +92,13 @@ export class DishdetailComponent implements OnInit {
     const form = this.feedbackForm;
 
     // Track if form validates successfully
-    let isFormValid = true
+    this.showFeedback = true
 
     // Loop through fields
     for (const field in this.formErrors) {
       if (!this.formErrors.hasOwnProperty(field)) {
         continue; // No error for field, next
       }
-      this.showFeedback = false;
       // clear previous error message (if any)
       this.formErrors[field] = '';
 
@@ -113,7 +112,7 @@ export class DishdetailComponent implements OnInit {
         // Look through controls errors add to error message
         for (const key in control.errors) {
           // We have an error, don't show preview
-          isFormValid = false
+          this.showFeedback = false
 
           if (control.errors.hasOwnProperty(key)) {
             this.formErrors[field] += messages[key] + ' ';
@@ -121,7 +120,6 @@ export class DishdetailComponent implements OnInit {
         }
       }
     }
-    this.showFeedback = true;
   }
 
   onSubmit() {
