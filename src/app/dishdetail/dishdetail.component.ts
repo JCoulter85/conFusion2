@@ -62,8 +62,8 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder) {
-    this.createForm();
     this.showFeedback = false;
+    this.createForm();
   }
 
 
@@ -99,7 +99,7 @@ export class DishdetailComponent implements OnInit {
       if (!this.formErrors.hasOwnProperty(field)) {
         continue; // No error for field, next
       }
-
+      this.showFeedback = false;
       // clear previous error message (if any)
       this.formErrors[field] = '';
 
@@ -121,6 +121,7 @@ export class DishdetailComponent implements OnInit {
         }
       }
     }
+    this.showFeedback = true;
   }
 
   onSubmit() {

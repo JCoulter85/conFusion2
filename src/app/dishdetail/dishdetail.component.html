@@ -35,10 +35,10 @@
       </mat-list-item>
     </mat-list>
     <mat-list>
-      <mat-list-item *ngIf="feedbackForm" >
-        <p matLine><span>--{{feedbackForm.value.author}}</span></p>
-        <p matLine>{{feedbackForm.value.rating}} Star</p>
-        <p matLine>{{feedbackForm.value.comment}}</p>
+        <mat-list-item *ngIf="showFeedback">
+          <p matLine><span>--{{feedbackForm.value.author}}</span></p>
+          <p matLine>{{feedbackForm.value.rating}} Star</p>
+          <p matLine>{{feedbackForm.value.comment}}</p>
       </mat-list-item>
     </mat-list>
     <form id="matSize" novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
@@ -47,17 +47,17 @@
         <mat-error *ngIf="formErrors.author">{{ formErrors.author }}</mat-error>
       </mat-form-field>
       <p>
-      <mat-slider matInput formControlName="rating" min="1" max="5" step="1" value="5" matInput tickInterval="1"
-        thumbLabel tickInterval="1" required></mat-slider>
+        <mat-slider matInput formControlName="rating" min="1" max="5" step="1" value="5" matInput tickInterval="1"
+          thumbLabel tickInterval="1" required></mat-slider>
       </p>
       <p>
         <mat-form-field [formGroup]="feedbackForm" #fform="ngForm">
-          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 required></textarea>
+          <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 required (ngSubmit)="onSubmit()"></textarea>
           <mat-error *ngIf="formErrors.comment">{{ formErrors.comment }}</mat-error>
         </mat-form-field>
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
-    
+
   </div>
 </div>
