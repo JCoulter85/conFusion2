@@ -92,13 +92,14 @@ export class DishdetailComponent implements OnInit {
     const form = this.feedbackForm;
 
     // Track if form validates successfully
-    this.showFeedback = true
+    
 
     // Loop through fields
     for (const field in this.formErrors) {
       if (!this.formErrors.hasOwnProperty(field)) {
         continue; // No error for field, next
       }
+      this.showFeedback = true
       // clear previous error message (if any)
       this.formErrors[field] = '';
 
