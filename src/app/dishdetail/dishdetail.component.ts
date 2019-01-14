@@ -154,7 +154,6 @@ export class DishdetailComponent implements OnInit {
       comment: '',
       rating: '5',
     });
-
   }
 
   setPrevNext(dishId: string) {
