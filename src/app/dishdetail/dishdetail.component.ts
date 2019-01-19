@@ -31,6 +31,7 @@ export class DishdetailComponent implements OnInit {
   showFeedback: boolean;
   newDate = new Date();
   showComment: string;
+  errMess: string;
 
 
 
@@ -73,7 +74,8 @@ export class DishdetailComponent implements OnInit {
     this.dishService.getDishIds()
       .subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, ,
+      errmess => this.errMess = <any>errmess);
   }
 
   createForm() {
@@ -82,43 +84,28 @@ export class DishdetailComponent implements OnInit {
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
-    this.onValueChanged(); // (re)set form validation messages
+    this.onValueChanged();
   }
 
   onValueChanged(data?: any) {
-    if (!this.feedbackForm) { // Do we have a form? No, we have nothing to validate
+    if (!this.feedbackForm) {
       return;
     }
-
-    // We are going to use the form a lot, lets make referencing it shorter
     const form = this.feedbackForm;
-
-    // Track if form validates successfully
-
-
-    // Loop through fields
     for (const field in this.formErrors) {
       if (!this.formErrors.hasOwnProperty(field)) {
-        continue; // No error for field, next
+        continue;
       }
       this.showFeedback = true
-      // clear previous error message (if any)
       this.formErrors[field] = '';
-
-      // Get reference to field/control
       const control = form.get(field);
       if (control.valid == false) {
         this.showFeedback = false
       }
-      // Is form isn't valid then we need to update error
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
-
-        // Look through controls errors add to error message
         for (const key in control.errors) {
-          // We have an error, don't show preview
           this.showFeedback = false
-
           if (control.errors.hasOwnProperty(key)) {
             this.formErrors[field] += messages[key] + ' ';
           }
