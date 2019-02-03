@@ -89,7 +89,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
-    { provide: 'BaseURL', useValue: baseURL },
+    {provide: 'BaseURL', useValue: baseURL},
   ],
 
   entryComponents: [

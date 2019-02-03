@@ -9,7 +9,7 @@ import { ViewChild } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormControl } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-
+import { Comment } from '../shared/comment';
 
 
 @Component({
@@ -33,6 +33,7 @@ export class DishdetailComponent implements OnInit {
   showComment: string;
   errMess: string;
   dishcopy: Dish;
+  comment: Comment;
 
 
 
@@ -74,10 +75,10 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
     this.dishService.getDishIds()
       .subscribe((dishIds) => this.dishIds = dishIds);
-    this.route.params
+      this.route.params
       .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
-        errmess => this.errMess = <any>errmess);
+        errmess => this.errMess = <any>errmess );
   }
 
   createForm() {
@@ -117,33 +118,12 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    let form = this.feedbackForm;
-    var date = new Date()
-    var day = date.getDate();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
-    var monthNames = [
-      "January", "February", "March",
-      "April", "May", "June", "July",
-      "August", "September", "October",
-      "November", "December"
-    ];
+    this.dishcopy.comments.push(this.comment);
     this.dishService.putDish(this.dishcopy)
       .subscribe(dish => {
-        this.dish = dish; this.dishcopy
+        this.dish = dish; this.dishcopy = dish;
       },
-        errmess => {
-          this.dish = null; this.dishcopy = null;
-          this.errMess = <any>errmess;
-        });
-
-
-    let comment = {
-      comment: form.get("comment").value,
-      rating: form.get("rating").value,
-      author: form.get("author").value,
-      date: day + ' ' + monthNames[monthIndex] + ' ' + year,
-    }
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
 
     this.dish.comments.push(comment)
 

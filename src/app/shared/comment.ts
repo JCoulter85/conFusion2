@@ -1,6 +1,13 @@
 export class Comment {
-    rating: number;
+    firstname: string;
+    lastname: string;
+    telnum: number;
+    email: string;
+    agree: boolean;
+    contacttype: string;
+    message: string;
     comment: string;
-    author: string;
-    date: string;
+    newDate = new Date();
 }
+
+export const ContactType = ['None', 'Tel', 'Email'];
