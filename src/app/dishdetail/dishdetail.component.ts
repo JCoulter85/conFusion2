@@ -16,7 +16,6 @@ import { Comment } from '../shared/comment';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss']
-
 })
 
 export class DishdetailComponent implements OnInit {
@@ -34,8 +33,6 @@ export class DishdetailComponent implements OnInit {
   errMess: string;
   dishcopy: Dish;
   comment: Comment;
-
-
 
   feedbackForm = this.fb.group({
     author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -75,15 +72,13 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
     this.dishService.getDishIds()
       .subscribe((dishIds) => this.dishIds = dishIds);
-      this.route.params
+    this.route.params
       .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
       .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
-        errmess => this.errMess = <any>errmess );
+        errmess => this.errMess = <any>errmess);
   }
 
   createForm() {
-
-
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
@@ -118,15 +113,31 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dishcopy.comments.push(this.comment);
+    let form = this.feedbackForm;
+    var date = new Date()
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    let comment = {
+      comment: form.get("comment").value,
+      rating: form.get("rating").value,
+      author: form.get("author").value,
+      date: day + ' ' + monthNames[monthIndex] + ' ' + year,
+    }
+
+    this.dishcopy.comments.push(comment);
     this.dishService.putDish(this.dishcopy)
       .subscribe(dish => {
         this.dish = dish; this.dishcopy = dish;
       },
-      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
-
-    this.dish.comments.push(comment)
-
+        errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     console.log(this.feedback);
     this.feedbackForm.reset({
       author: '',
@@ -139,7 +150,6 @@ export class DishdetailComponent implements OnInit {
     const index = this.dishIds.indexOf(dishId);
     this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length]
     this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length]
-
   }
 
   goBack(): void {
