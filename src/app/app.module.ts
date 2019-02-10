@@ -41,6 +41,7 @@ import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HighlightDirective } from './directives/highlight.directive';
 
 
 
@@ -56,6 +57,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     HomeComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
 
 
   ],
