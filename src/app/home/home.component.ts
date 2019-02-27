@@ -11,14 +11,14 @@ import { flyInOut, expand } from '../animations/app.animation';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-    host: {
-      '[@flyInOut]': 'true',
-      'style': 'display: block;'
-      },
-      animations: [
-        flyInOut(),
-        expand()
-      ]
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -34,12 +34,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dishService.getFeaturedDish()
-    .subscribe(DISHES => this.dish = DISHES,
-      errmess => this.errMess = <any>errmess);
+      .subscribe(DISHES => this.dish = DISHES,
+        errmess => this.errMess = <any>errmess);
     this.promotionService.getFeaturedPromotion()
-    .subscribe(promotion => this.promotion = promotion);
+      .subscribe(promotion => this.promotion = promotion,
+        errmess => this.errMess = <any>errmess);
     this.leaderService.getFeaturedLeader()
-    .subscribe(leader => this.leader = leader);
+      .subscribe(leader => this.leader = leader);
   }
 
 }
