@@ -23,9 +23,8 @@ export class PromotionService {
 
   getPromotion(id: string): Observable<Promotion> {
     return this.http.get<Promotion>(baseURL + 'promotion/' + id)
-    .pipe(catchError(this.processHTTPMsgService.handleError));
-}
-
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+  }
 
   getFeaturedPromotion(): Observable<Promotion> {
     return of(PROMOTIONS.filter((promotion) => promotion.featured)[0]).pipe(delay(2000));
