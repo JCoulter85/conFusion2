@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
 import { flyInOut, expand } from '../animations/app.animation';
 import { Injectable } from '@angular/core';
-import { LEADERS } from '../shared/leaders';
+
 
 @Component({
   selector: 'app-about',
@@ -23,7 +23,7 @@ import { LEADERS } from '../shared/leaders';
   providedIn: 'root'
 })
 
-export class AboutComponent{
+export class AboutComponent {
 
   leaders: Leader[];
 

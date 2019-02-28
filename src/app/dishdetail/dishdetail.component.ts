@@ -16,9 +16,9 @@ import { flyInOut, visibility, expand } from '../animations/app.animation';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
- host: {
-  '[@flyInOut]': 'true',
-  'style': 'display: block;'
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
   },
   animations: [
     flyInOut(),
@@ -84,7 +84,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params
       .pipe(switchMap((params: Params) => { this.visibility = 'hidden'; return this.dishService.getDish(params['id']); }))
-      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); this.visibility = 'shown';},
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); this.visibility = 'shown'; },
         errmess => this.errMess = <any>errmess);
   }
 

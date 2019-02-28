@@ -6,7 +6,7 @@ import { PromotionService } from '../services/promotion.service';
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
 import { flyInOut, expand } from '../animations/app.animation';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit {
   constructor(private dishService: DishService,
     private promotionService: PromotionService,
     private leaderService: LeaderService,
-    private http: HttpClient,
     @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
