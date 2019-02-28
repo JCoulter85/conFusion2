@@ -26,6 +26,7 @@ export class LeaderService {
   }
   
   getFeaturedLeader(): Observable<Leader> {
-    return of(LEADERS.filter((leader) => leader.featured)[0]).pipe(delay(2000));
+    return this.http.get<Leader[]>(baseURL + 'leaders?featured=true').pipe(map(leaders => leaders[0]))
+      .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 }
