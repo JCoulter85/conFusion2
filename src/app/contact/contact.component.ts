@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { baseURL } from '../shared/baseurl';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-contact',
