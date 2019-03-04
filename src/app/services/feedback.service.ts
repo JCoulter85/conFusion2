@@ -19,8 +19,8 @@ export class FeedbackService {
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
-  save(feedback: Feedback) {
-    this.HttpClient.post('http://localhost:3000/feedback', feedback, {
+  save(feedback: Feedback): Observable<FeedbackService> {
+    return this.HttpClient.post('http://localhost:3000/contactus', feedback, {
       headers: new HttpHeaders({
         'Content-Type': 'application/jason'
       })
