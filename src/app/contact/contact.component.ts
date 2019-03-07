@@ -25,7 +25,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class ContactComponent implements OnInit {
 
-  HttpClient: any;
+
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
@@ -107,7 +107,6 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
-    this.submitFeedback;
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -119,19 +118,6 @@ export class ContactComponent implements OnInit {
     });
     this.feedbackFormDirective.resetForm();
   }
-
-  submitFeedback(feedback: Feedback): Observable<FeedbackService> {
-    return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/jason'
-      })
-    })
-      .pipe(catchError(this.handleError));
-  }
-  handleError(): any {
-    throw new Error("Method not implemented.");
-  }
-
 }
 
 
