@@ -16,13 +16,14 @@ export class FeedbackService {
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
-  submitFeedback(feedback: Feedback): Observable<FeedbackService> {
+  submitFeedback(feedback: Feedback): Observable<Feedback> {
     return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
       headers: new HttpHeaders({
-        'Content-Type': ''
+        'Content-Type': 'application/jason'
       })
     });
   }
+
 
 }
 
