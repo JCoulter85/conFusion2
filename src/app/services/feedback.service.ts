@@ -19,19 +19,9 @@ export class FeedbackService {
   submitFeedback(feedback: Feedback): Observable<FeedbackService> {
     return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
       headers: new HttpHeaders({
-        "_Content-Type": 'application/jason',
-        get "Content-Type"() {
-          return this["_Content-Type"];
-        },
-        set "Content-Type"(value) {
-          this["_Content-Type"] = value;
-        },
+        'Content-Type': ''
       })
-    })
-      .pipe(catchError(this.handleError));
-  }
-  handleError(handleError: any): any {
-    throw new Error("Method not implemented.");
+    });
   }
 
 }
