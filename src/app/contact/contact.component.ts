@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { baseURL } from '../shared/baseurl';
-import { map, catchError } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { Observable, } from 'rxjs';
+import { FeedbackService } from '../services/feedback.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -12,18 +14,18 @@ import { map, catchError } from 'rxjs/operators';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-    host: {
-      '[@flyInOut]': 'true',
-      'style': 'display: block;'
-      },
-      animations: [
-        flyInOut()
-      ]
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut()
+  ]
 })
 
 export class ContactComponent implements OnInit {
 
-
+  HttpClient: any;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
@@ -56,6 +58,8 @@ export class ContactComponent implements OnInit {
       'email': 'Email not in valid format.',
     }
   };
+  http: any;
+  processHTTPMsgService: any;
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -76,12 +80,12 @@ export class ContactComponent implements OnInit {
     });
 
     this.feedbackForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
+      .subscribe(data => this.onValueChanged());
 
     this.onValueChanged();
   }
 
-  onValueChanged(data?: any) {
+  onValueChanged() {
     if (!this.feedbackForm) { return; }
     const form = this.feedbackForm;
     for (const field in this.formErrors) {
@@ -103,6 +107,7 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
+    this.submitFeedback;
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -115,4 +120,18 @@ export class ContactComponent implements OnInit {
     this.feedbackFormDirective.resetForm();
   }
 
+  submitFeedback(feedback: Feedback): Observable<FeedbackService> {
+    return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/jason'
+      })
+    })
+      .pipe(catchError(this.handleError));
+  }
+  handleError(): any {
+    throw new Error("Method not implemented.");
+  }
+
 }
+
+

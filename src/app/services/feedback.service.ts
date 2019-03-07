@@ -5,7 +5,6 @@ import { baseURL } from '../shared/baseurl';
 import { catchError } from 'rxjs/operators';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 
 @Injectable({
