@@ -5,7 +5,7 @@ import { baseURL } from '../shared/baseurl';
 import { catchError } from 'rxjs/operators';
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Feedback, ContactType } from '../shared/feedback';
+import { Feedback } from '../shared/feedback';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ import { Feedback, ContactType } from '../shared/feedback';
 export class FeedbackService {
   HttpClient: any;
 
-  constructor(private http: HttpClient,
-    private processHTTPMsgService: ProcessHTTPMsgService) { }
+  constructor(http: HttpClient,
+     processHTTPMsgService: ProcessHTTPMsgService) { }
 
   submitFeedback(feedback: Feedback): Observable<Feedback> {
     return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
@@ -26,4 +26,3 @@ export class FeedbackService {
 
 
 }
-

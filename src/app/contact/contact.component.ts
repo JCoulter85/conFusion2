@@ -2,11 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
-import { HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Observable, } from 'rxjs';
-import { FeedbackService } from '../services/feedback.service';
-import { HttpClient } from '@angular/common/http';
 
 
 
@@ -80,7 +75,7 @@ export class ContactComponent implements OnInit {
     });
 
     this.feedbackForm.valueChanges
-      .subscribe(data => this.onValueChanged());
+      .subscribe(() => this.onValueChanged());
 
     this.onValueChanged();
   }

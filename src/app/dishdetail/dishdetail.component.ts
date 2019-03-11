@@ -8,7 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormControl } from '@angular/forms';
-import { Feedback, ContactType } from '../shared/feedback';
+import { ContactType } from '../shared/feedback';
+import { Feedback } from "../shared/Feedback";
 import { Comment } from '../shared/comment';
 import { flyInOut, visibility, expand } from '../animations/app.animation';
 
