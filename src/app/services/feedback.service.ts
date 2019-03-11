@@ -17,7 +17,7 @@ export class FeedbackService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   submitFeedback: (feedback: Feedback) => Observable<Feedback>; 
-  this.HttpClient.post('http://localhost:3000/feedback', feedback, {
+  this.HttpClient.post('http://localhost:3000/feedback', Feedback, {
     headers: new HttpHeaders({
       'Content-Type': 'application/jason'
     })
