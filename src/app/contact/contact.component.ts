@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
-
+import { FeedbackService } from '../services/feedback.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { flyInOut } from '../animations/app.animation';
 
 export class ContactComponent implements OnInit {
 
-
+  feedbackservice = FeedbackService;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
@@ -99,8 +99,9 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(submitFeedback) {
     this.feedback = this.feedbackForm.value;
+    this.FeedbackService.submitFeedback(this.submitFeedback)
     console.log(this.feedback);
     this.feedbackForm.reset({
       firstname: '',
