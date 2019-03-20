@@ -10,6 +10,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FeedbackService {
   HttpClient: any;
 
