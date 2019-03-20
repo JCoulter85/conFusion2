@@ -56,7 +56,7 @@ export class ContactComponent implements OnInit {
   http: any;
   processHTTPMsgService: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,) {
     this.createForm();
   }
 

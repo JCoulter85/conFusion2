@@ -13,6 +13,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 
 export class FeedbackService {
   HttpClient: any;
+  feedback: Feedback;
 
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }

@@ -42,6 +42,7 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HighlightDirective } from './directives/highlight.directive';
+import { FeedbackService } from './services/feedback.service';
 
 
 
@@ -91,6 +92,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
+    FeedbackService,
     {provide: 'BaseURL', useValue: baseURL},
   ],
 
