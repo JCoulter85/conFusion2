@@ -12,6 +12,9 @@ import { Feedback, ContactType } from '../shared/feedback';
 })
 
 export class FeedbackService {
+  static submitFeedback(submitFeedback: any): any {
+    throw new Error("Method not implemented.");
+  }
   HttpClient: any;
   feedback: Feedback;
 
