@@ -55,6 +55,7 @@ export class ContactComponent implements OnInit {
   };
   http: any;
   processHTTPMsgService: any;
+  submitFeedback: any;
 
   constructor(private fb: FormBuilder,) {
     this.createForm();
@@ -99,7 +100,7 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  onSubmit(submitFeedback) {
+  onSubmit() {
     this.feedback = this.feedbackForm.value;
     this.feedbackservice.submitFeedback(this.submitFeedback)
     console.log(this.feedback);
