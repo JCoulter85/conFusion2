@@ -5,6 +5,7 @@ import { flyInOut } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
