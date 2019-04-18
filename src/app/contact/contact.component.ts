@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 
 
@@ -21,11 +22,13 @@ import { FeedbackService } from '../services/feedback.service';
 
 export class ContactComponent implements OnInit {
 
-  feedbackservice = FeedbackService;
+  feedbackService = FeedbackService;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+
   @ViewChild('fform') feedbackFormDirective;
+
 
   formErrors = {
     'firstname': '',
@@ -57,12 +60,16 @@ export class ContactComponent implements OnInit {
   http: any;
   processHTTPMsgService: any;
   submitFeedback: any;
+  isSubmitting: boolean;
+  hideForm: boolean;
 
-  constructor(private fb: FormBuilder,) {
+
+  constructor(private fb: FormBuilder, ) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.isSubmitting = false;
   }
 
   createForm() {
@@ -102,20 +109,32 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    this.feedbackservice.submitFeedback(this.submitFeedback)
-    console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+    let form = this.feedbackForm;
+
+    this.isSubmitting = true;
+    this.hideForm = true;
+
+    let feedback = {
+      firstname: form.get("firstname").value,
+      lastname: form.get("lastname").value,
+      telnum: form.get("telnum").value,
+      email: form.get("email").value,
+      agree: form.get("agree").value,
+      contacttype: form.get("contacttype").value,
+      message: form.get("message").value,
+      comment: form.get("comment").value,
+    };
+
+
+    this.feedbackService.submitFeedback(feedback)
+      .subscribe(feedback => {
+        this.feedback = feedback;
+        this.isSubmitting = false;
+      },
+        errmess => {
+          this.feedback = null;
+        });
+
+
   }
 }
-
-
