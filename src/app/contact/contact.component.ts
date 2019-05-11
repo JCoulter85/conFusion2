@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand, visibility } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
@@ -16,13 +16,14 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
     'style': 'display: block;'
   },
   animations: [
-    flyInOut()
+    flyInOut(),
+    expand(),
+    visibility()
   ]
 })
 
 export class ContactComponent implements OnInit {
 
-  feedbackService = FeedbackService;
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
@@ -64,7 +65,8 @@ export class ContactComponent implements OnInit {
   hideForm: boolean;
 
 
-  constructor(private fb: FormBuilder, ) {
+  constructor(private feedbackService: FeedbackService,
+    private fb: FormBuilder, ) {
     this.createForm();
   }
 
@@ -114,6 +116,17 @@ export class ContactComponent implements OnInit {
     this.isSubmitting = true;
     this.hideForm = true;
 
+    var date = new Date()
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
     let feedback = {
       firstname: form.get("firstname").value,
       lastname: form.get("lastname").value,
@@ -122,18 +135,26 @@ export class ContactComponent implements OnInit {
       agree: form.get("agree").value,
       contacttype: form.get("contacttype").value,
       message: form.get("message").value,
-      comment: form.get("comment").value,
+      date: day + ' ' + monthNames[monthIndex] + ' ' + year,
     };
 
 
     this.feedbackService.submitFeedback(feedback)
       .subscribe(feedback => {
         this.feedback = feedback;
+        console.log(this.feedback);
         this.isSubmitting = false;
+
+        setTimeout(() => {
+          this.feedback = null;
+          this.feedbackForm.reset();
+          this.hideForm = false;
+        }, 5000);
       },
         errmess => {
           this.feedback = null;
         });
+
 
 
   }

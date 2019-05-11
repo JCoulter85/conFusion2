@@ -6,8 +6,7 @@ export class Feedback {
     agree: boolean;
     contacttype: string;
     message: string;
-    comment: string;
-    newDate = new Date();
+    date : string;
 };
 
 export const ContactType = ['None', 'Tel', 'Email'];

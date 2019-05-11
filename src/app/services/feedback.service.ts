@@ -12,17 +12,11 @@ import { Feedback, ContactType } from '../shared/feedback';
 })
 
 export class FeedbackService {
-  static submitFeedback(submitFeedback: any): any {
-    throw new Error("Method not implemented.");
-  }
-  HttpClient: any;
-  feedback: Feedback;
-
   constructor(private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   submitFeedback(feedback: Feedback): Observable<Feedback> {
-    return this.HttpClient.post('http://localhost:3000/feedback', feedback, {
+    return this.http.post<Feedback>('http://localhost:3000/feedback', feedback, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
